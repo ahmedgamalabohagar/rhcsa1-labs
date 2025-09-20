@@ -12,55 +12,46 @@
   ```bash
      mkdir projX projY
 ```
+[![](Images/1.jpg)](Images/1.jpg)
 
 
-  ### 2. Create a new group
+  ### 2. change projX directory owner , group and SUID
   ```bash
-     sudo groupadd developers
+     sudo chgrp developers projX
+     sudo chown omar projX
+     chmod u+s projX
   ```
-  ### 3. add user to group developers
+[![](Images/3.jpg)](Images/3.jpg)
+
+  ### 3. add permission to alice on projY 
   ```bash
-     sudo usermod -aG developers alice
+     sudo setfacl -m u:alice:rwx projY
   ```
+[![](Images/4.jpg)](Images/4.jpg)
 
 
-
-  ### 4 . verify user details 
+  ### 4. control default permission 
+   #### 1. temporary
   ```bash
-   id alice
-```
-[![](Images/2-alice-info.jpg)](Images/2-alice-info.jpg)
+   umask 002
+  ```
+  - when create directory (777-umask) and file (666-umask)
     
-  - or Display the contents of the /etc/group file and view member of developers group
-[![](Images/1-user-addedTo-developerGroup.jpg)](Images/1-user-addedTo-developerGroup.jpg)
+[![](Images/7.jpg)](Images/7.jpg)
 
- ### 5. change password expire date
-  ```bash
-     sudo usermod -e 2026-04-24 alice
-  ```
- ### 6. verify password details
-  ```bash 
-      sudo cat /etc/shadow
-```
-[![](Images/3-verify-expire-date.jpg)](Images/3-verify-expire-date.jpg)
-  - Display the content of /etc/shadow file to verify info
-
- ### 7. Configure sudo for one of them
-  ```bash
-       sudo usermod -aG wheel alice
-  ```
-  [![](Images/4-addTo-wheel.jpg)](Images/4-addTo-wheel.jpg) 
+  #### 2. permenant for one user 
+  - modify bashrc file
     
-  ## Challenges
-  - At first, I tried setting the password using:
-```bash
-sudo usermod -p password alice
-```
--This stored the password as plain text in /etc/shadow, which is a security risk.
-- To fix this, I switched to using the passwd command:
-  ```bash
-  sudo passwd alice
-  ```
+[![](Images/6.jpg)](Images/6.jpg)
+    
+  #### 3. permenant for all users  
+  
+  - modify /etc/profile 
+
+
+    
+ 
   -This stored the password securely as a hash instead of plain text.
+
 
 
