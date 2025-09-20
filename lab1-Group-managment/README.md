@@ -25,12 +25,17 @@
   ```bash
      sudo usermod -aG developers alice
   ```
+
+
+
   ### 4 . verify user details 
   ```bash
    id alice
 ```
-    - or
-    - Display the contents of the /etc/group file and view member of developers group
+[![](Images/2-alice-info.jpg)](Images/2-alice-info.jpg)
+    
+  - or Display the contents of the /etc/group file and view member of developers group
+[![](Images/1-user-addedTo-developerGroup.jpg)](Images/1-user-addedTo-developerGroup.jpg)
 
  ### 5. change password expire date
   ```bash
@@ -40,13 +45,15 @@
   ```bash 
       sudo cat /etc/shadow
 ```
-  -Display the content of /etc/shadow file to verify info
+[![](Images/3-verify-expire-date.jpg)](Images/3-verify-expire-date.jpg)
+  - Display the content of /etc/shadow file to verify info
 
  ### 7. Configure sudo for one of them
   ```bash
        sudo usermod -aG wheel alice
   ```
-        
+  [![](Images/4-addTo-wheel.jpg)](Images/4-addTo-wheel.jpg) 
+    
   ## Challenges
   - At first, I tried setting the password using:
 ```bash
@@ -58,3 +65,4 @@ sudo usermod -p password alice
   sudo passwd alice
   ```
   -This stored the password securely as a hash instead of plain text.
+
