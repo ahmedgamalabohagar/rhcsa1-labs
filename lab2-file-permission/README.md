@@ -51,7 +51,3 @@
 
     
  
-  -This stored the password securely as a hash instead of plain text.
-
-
-
