@@ -1,4 +1,4 @@
-# Lab 3: service managment
+# Lab 4: service managment
 
 ## Objective
 
@@ -9,7 +9,7 @@
 
 ## Steps
 
-  ### 1. Install and configure httpd (Apache).
+  ### 1. Install httpd (Apache).
   ```bash
      sudo yum install httpd
      or
@@ -18,40 +18,56 @@
 [![](Images/1.jpg)](Images/1.jpg)
 
 
-  ### 2. change projX directory owner , group and SUID
+  ### 2. run httpd and check status
   ```bash
-     sudo chgrp developers projX
-     sudo chown omar projX
-     chmod u+s projX
+     sudo systemctl start httpd
+     sudo systemctl status httpd
   ```
+[![](Images/2.jpg)](Images/2.jpg)
+
+  ### 3. Set it to start on boot
+  ```bash
+     sudo systemctl enable httpd
+  ```
+- apache run auto for each boot
+
+  ### 4. write script  
 [![](Images/3.jpg)](Images/3.jpg)
+  - print numbers from 10 to 1    
 
-  ### 3. add permission to alice on projY 
+  ### 5. make file executable   
   ```bash
-     sudo setfacl -m u:alice:rwx projY
+     sudo chmod +x countdown.sh
   ```
-[![](Images/4.jpg)](Images/4.jpg)
-
-
-  ### 4. control default permission 
-   #### 1. temporary
+    
+  ### 6. execute file (fg , bg)
   ```bash
-   umask 002
+      ./countdown.sh        (fg)
+      ./countdown.sh &      (bg)
   ```
-  - when create directory (777-umask) and file (666-umask)
-    
-[![](Images/7.jpg)](Images/7.jpg)
 
-  #### 2. permenant for one user 
-  - modify bashrc file
-    
-[![](Images/6.jpg)](Images/6.jpg)
-    
-  #### 3. permenant for all users  
-  
-  - modify /etc/profile 
+  ### 7. display process
+  - using ps  => display snapshot of running process
+```bash
+ps
+```
+[![](Images/ps.jpg)](Images/ps.jpg)
+
+- using top  => diplay process live
+```bash
+top
+```
+[![](Images/top.jpg)](Images/top.jpg)
+
+### 8. kill process 
+```bash
+kill 25670
+```
+   
 
 
-    
+## challenges 
+I didn’t manage to write the script this time, but I learned how to run and manage processes, which I will apply in future tasks.
  
+
 
